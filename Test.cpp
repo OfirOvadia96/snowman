@@ -9,15 +9,15 @@ using namespace ariel;
 //checks invalid inputs:
 
 TEST_CASE("Bad input >> to_short to_long"){
-int short_random = rand()%11111111;
-int long_random = rand()% INTMAX_MAX + 44444445;
-CHECK_THROWS(ariel :: snowman(short_random));
-CHECK_THROWS(ariel :: snowman(long_random));
+int short_random = rand()%11111111; //0 to 11111110
+int long_random = rand()% INTMAX_MAX + 44444445; //44444445 to max_int
+CHECK_THROWS(snowman(short_random));
+CHECK_THROWS(snowman(long_random));
 }
 
 TEST_CASE("Bad inputs >> negetive number"){
     int negative = ((-1) * rand() % INTMAX_MAX);
-    CHECK_THROWS(ariel :: snowman(negative));
+    CHECK_THROWS(snowman(negative));
 }
 
 //checks all the 48 cases >> (8 - digit) * (6 - out_of_range_numbers)
@@ -26,42 +26,42 @@ TEST_CASE("Bad input >> contains number not in the range 1-4"){
     int arr[6] = {-1, 4, 5, 6, 7, 8};
     int number = 11111111;
     for(int i=0; i<array_length i++){
-        CHECK_THROWS(ariel :: snowman((number+arr[i])));
+        CHECK_THROWS(snowman((number+arr[i])));
     }
 
     //second digit
     for(int i=0; i<array_length i++){
-        CHECK_THROWS(ariel :: snowman((number+(arr[i]*10))));
+        CHECK_THROWS(snowman((number+(arr[i]*10))));
     }
 
     //third digit
     for(int i=0; i<array_length i++){
-        CHECK_THROWS(ariel :: snowman((number+(arr[i]*100))));
+        CHECK_THROWS(snowman((number+(arr[i]*100))));
     }
 
     //fourth digit
     for(int i=0; i<array_length i++){
-        CHECK_THROWS(ariel :: snowman((number+(arr[i]*1000))));
+        CHECK_THROWS(snowman((number+(arr[i]*1000))));
     }
 
     //fifth digit
     for(int i=0; i<array_length i++){
-        CHECK_THROWS(ariel :: snowman((number+(arr[i]*10000))));
+        CHECK_THROWS(snowman((number+(arr[i]*10000))));
     }
 
     //sixth digit
     for(int i=0; i<array_length i++){
-        CHECK_THROWS(ariel :: snowman((number+(arr[i]*100000))));
+        CHECK_THROWS(snowman((number+(arr[i]*100000))));
     }
 
     //seventh digit
     for(int i=0; i<array_length i++){
-        CHECK_THROWS(ariel :: snowman((number+(arr[i]*1000000))));
+        CHECK_THROWS(snowman((number+(arr[i]*1000000))));
     }
 
     //eighth digit
     for(int i=0; i<array_length i++){
-        CHECK_THROWS(ariel :: snowman((number+(arr[i]*10000000))));
+        CHECK_THROWS(snowman((number+(arr[i]*10000000))));
     }
 }
 
@@ -75,44 +75,44 @@ TEST_CASE("Good input >> check snowman body parts"){
 }
 
 TEST_CASE("Good inputs >> randomal snowmans"){
-    CHECK(ariel :: snowman(11111111) == string("_===_\n(.,.)\n<( : )>\n( : )"));
+    CHECK(snowman(11111111) == string("_===_\n(.,.)\n<( : )>\n( : )"));
 
-    CHECK(ariel :: snowman(31112214) == string("_/_\\\n\\(.,.)/\n]( : )[\n(   )")) ;
+    CHECK(snowman(31112214) == string("_/_\\\n\\(.,.)/\n]( : )[\n(   )")) ;
     
-    CHECK (ariel :: snowman(41112214) ==string("___ \n(_*_)\n\\(.,.)/\n]( : )[\n(   )"));
+    CHECK (snowman(41112214) ==string("___ \n(_*_)\n\\(.,.)/\n]( : )[\n(   )"));
 
-    CHECK(ariel :: snowman(44112214) == string("___ \n(_*_)\n\\(. .)/\n]( : )[\n(   )")); 
+    CHECK(snowman(44112214) == string("___ \n(_*_)\n\\(. .)/\n]( : )[\n(   )")); 
 
-    CHECK(ariel :: snowman(44442214) ==string( "___ \n(_*_)\n\\(- -)/\n]( : )[\n(   )"));
+    CHECK(snowman(44442214) ==string( "___ \n(_*_)\n\\(- -)/\n]( : )[\n(   )"));
 
-    CHECK(ariel :: snowman(42442214) ==string( "___ \n(_*_)\n\\(-.-)/\n]( : )[\n(   )"));
+    CHECK(snowman(42442214) ==string( "___ \n(_*_)\n\\(-.-)/\n]( : )[\n(   )"));
 
-    CHECK(ariel :: snowman(11114411) == string("_===_\n(.,.)\n( : )\n( : )"));
+    CHECK(snowman(11114411) == string("_===_\n(.,.)\n( : )\n( : )"));
 
-    CHECK(ariel :: snowman(41111112) == string("___ \n(_*_)\n(.,.)\n<( : )>\n(" ")"));
+    CHECK(snowman(41111112) == string("___ \n(_*_)\n(.,.)\n<( : )>\n(" ")"));
 
-    CHECK(ariel :: snowman(11112211) == string("_===_\n\\(.,.)/\n( : )\n( : )"));
+    CHECK(snowman(11112211) == string("_===_\n\\(.,.)/\n( : )\n( : )"));
 
-    CHECK(ariel :: snowman(11112213) == string("_===_\n\\(.,.)/\n( : )\n( ___ )"));
+    CHECK(snowman(11112213) == string("_===_\n\\(.,.)/\n( : )\n( ___ )"));
 
-    CHECK(ariel :: snowman(21112213) == string("___\n.....\n\\(.,.)/\n( : )\n( ___ )"));
+    CHECK(snowman(21112213) == string("___\n.....\n\\(.,.)/\n( : )\n( ___ )"));
 
-    CHECK(ariel :: snowman(11111213) == string("_===_\n(.,.)/\n<( : )\n( ___ )"));
+    CHECK(snowman(11111213) == string("_===_\n(.,.)/\n<( : )\n( ___ )"));
 
-    CHECK(ariel :: snowman(11331213) == string("_===_\n(O,O)/\n<( : )\n( ___ )"));
+    CHECK(snowman(11331213) == string("_===_\n(O,O)/\n<( : )\n( ___ )"));
 
-    CHECK(ariel :: snowman(32331213) == string("_ \n/_\\\n(O.O)/\n<( : )\n( ___ )"));
+    CHECK(snowman(32331213) == string("_ \n/_\\\n(O.O)/\n<( : )\n( ___ )"));
 
-    CHECK(ariel :: snowman(11331113) == string("_===_\n(O,O)\n<( : )>\n( ___ )"));
+    CHECK(snowman(11331113) == string("_===_\n(O,O)\n<( : )>\n( ___ )"));
 
-    CHECK(ariel :: snowman(11331133) == string("_===_\n(O,O)\n<(> <)>\n( ___ )"));
+    CHECK(snowman(11331133) == string("_===_\n(O,O)\n<(> <)>\n( ___ )"));
 
-    CHECK(ariel :: snowman(11331233) == string("_===_\n(O,O)/\n<(> <)\n( ___ )"));
+    CHECK(snowman(11331233) == string("_===_\n(O,O)/\n<(> <)\n( ___ )"));
 
-    CHECK(ariel :: snowman(11321222) == string("_===_\n(O,o)/\n<(] [)\n(" ") "));
+    CHECK(snowman(11321222) == string("_===_\n(O,o)/\n<(] [)\n(" ") "));
 
-    CHECK(ariel :: snowman(12222212) == string("_===_\n(o.o)\n\\( : )/\n(" ")"));
+    CHECK(snowman(12222212) == string("_===_\n(o.o)\n\\( : )/\n(" ")"));
     
-    CHECK(ariel :: snowman(32443333) == string("_/_\\\n\\(-.-)/\n(> <)\n(___)"));
+    CHECK(snowman(32443333) == string("_/_\\\n\\(-.-)/\n(> <)\n(___)"));
 
 }
