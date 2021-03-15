@@ -9,6 +9,12 @@ SOURCES=snowman.cpp
 run: test
 	./$^
 
+snowman: snowman.o main.o
+	$(CXX) -o snowman snowman.o main.o
+
+main.o: main.cpp
+	$(CXX) -c main.cpp
+
 test: TestRunner.o StudentTest1.o StudentTest2.o StudentTest3.o $(OBJECTS)
 	$(CXX) $(CXXFLAGS) $^ -o test
 
