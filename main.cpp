@@ -20,5 +20,5 @@ int main(){
         cout << "to continue insert 1 , to exit insert 0\n";
         cin >> choose;
     }
-
+    return 0;
 }
